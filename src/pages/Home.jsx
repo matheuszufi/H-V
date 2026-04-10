@@ -1,6 +1,26 @@
 import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 
 export default function Home() {
+  const [timeLeft, setTimeLeft] = useState({ dias: 0, horas: 0, minutos: 0, segundos: 0 })
+
+  useEffect(() => {
+    const target = new Date('2026-08-01T09:30:00').getTime()
+    const update = () => {
+      const now = Date.now()
+      const diff = Math.max(0, target - now)
+      setTimeLeft({
+        dias: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        horas: Math.floor((diff / (1000 * 60 * 60)) % 24),
+        minutos: Math.floor((diff / (1000 * 60)) % 60),
+        segundos: Math.floor((diff / 1000) % 60),
+      })
+    }
+    update()
+    const id = setInterval(update, 1000)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <>
       <section className="hero">
@@ -54,6 +74,25 @@ export default function Home() {
             Confirme sua presença no máximo até o dia <strong>29/06/2026</strong>.
           </p>
           <Link to="/confirmar" className="rsvp-phone">Confirmar Presença</Link>
+
+          <div className="countdown">
+            <div className="countdown-item">
+              <span className="countdown-number">{timeLeft.dias}</span>
+              <span className="countdown-label">Dias</span>
+            </div>
+            <div className="countdown-item">
+              <span className="countdown-number">{timeLeft.horas}</span>
+              <span className="countdown-label">Horas</span>
+            </div>
+            <div className="countdown-item">
+              <span className="countdown-number">{timeLeft.minutos}</span>
+              <span className="countdown-label">Minutos</span>
+            </div>
+            <div className="countdown-item">
+              <span className="countdown-number">{timeLeft.segundos}</span>
+              <span className="countdown-label">Segundos</span>
+            </div>
+          </div>
 
           <div className="obs">
             <h3>Observação</h3>
