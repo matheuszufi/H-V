@@ -656,9 +656,10 @@ html, body {
   .map-content {
     grid-template-columns: 1fr;
     max-width: 360px;
+    gap: 0;
   }
 
   .map-item-img {
-    width: 50%;
+    width: 130%;
   }
 }
