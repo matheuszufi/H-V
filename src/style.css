@@ -304,6 +304,78 @@ html, body {
   margin: 2.5rem auto 0;
 }
 
+/* ── Map Section ── */
+.map-section {
+  max-width: none;
+  margin: 0;
+  padding: 10rem 2rem 3rem;
+  background-image: url('/images/background-pattern.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12); */
+}
+
+.map-section::before,
+.map-section::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.map-section::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgb(226, 222, 218), transparent);
+}
+
+.map-section::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgb(226, 222, 218), transparent);
+}
+
+.map-content {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+
+.map-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-item-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.map-item-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: #3a3a3a;
+  letter-spacing: 0.04em;
+  margin-top: 1rem;
+}
+
+.map-item-desc {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: #1b1b1b;
+  margin-top: 0.3rem;
+}
+
 /* ── Dresscode Section ── */
 .dresscode {
   max-width: 900px;
@@ -521,5 +593,10 @@ html, body {
 
   .dresscode-columns {
     grid-template-columns: 1fr;
+  }
+
+  .map-content {
+    grid-template-columns: 1fr;
+    max-width: 360px;
   }
 }

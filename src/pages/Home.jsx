@@ -67,6 +67,26 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="map-section">
+        <div className="map-content">
+          <div className="map-item">
+            <img src="/images/igreja2.png" alt="Igreja" className="map-item-img" />
+            <h4 className="map-item-title">Igreja</h4>
+            <p className="map-item-desc">Paróquia Santo Antônio - Matriz</p>
+          </div>
+          <div className="map-item">
+            <img src="/images/condominio2.png" alt="Condomínio" className="map-item-img" />
+            <h4 className="map-item-title">Condomínio</h4>
+            <p className="map-item-desc">Recanto Golf Ville</p>
+          </div>
+          <div className="map-item">
+            <img src="/images/celeiro2.png" alt="Salão de Festas" className="map-item-img" />
+            <h4 className="map-item-title">Salão de Festas</h4>
+            <p className="map-item-desc">Dentro do condomínio</p>
+          </div>
+        </div>
+      </section>
+
       <section className="bible-section">
         <blockquote>
           &ldquo;Vós, maridos, amai vossas mulheres, como também Cristo amou a Igreja e se entregou
