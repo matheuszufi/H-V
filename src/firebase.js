@@ -3,12 +3,12 @@ import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  apiKey: 'AIzaSyCYx7L4tM0zXi7qWetcFZJVbrz5W0tjIrg',
+  authDomain: 'casamentoheldervanessa.firebaseapp.com',
+  projectId: 'casamentoheldervanessa',
+  storageBucket: 'casamentoheldervanessa.firebasestorage.app',
+  messagingSenderId: '888726908835',
+  appId: '1:888726908835:web:23b658b23662561ad67416',
 }
 
 let app, auth, db
