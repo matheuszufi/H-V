@@ -566,6 +566,166 @@ html, body {
   line-height: 1.8;
 }
 
+/* ── Gift Section ── */
+.gift-section {
+  width: 100%;
+  padding: 5rem 2rem;
+  text-align: center;
+  background-color: rgb(226, 222, 218);
+}
+
+.gift-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #3a3a3a;
+}
+
+.gift-divider {
+  width: 60px;
+  height: 1px;
+  background-color: #bf9b60;
+  margin: 1.5rem auto;
+}
+
+.gift-text {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: #777;
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.8;
+}
+
+.gift-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.gift-card {
+  /* background: #fff; */
+  /* border: 1px solid rgba(0, 0, 0, 0.07); */
+  border-radius: 10px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.gift-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #3a3a3a;
+  letter-spacing: 0.05em;
+}
+
+.gift-card-desc {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 0.82rem;
+  color: #999;
+  margin-bottom: 0.75rem;
+}
+
+.gift-pix-key {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #5b4a2e;
+  background: rgba(191, 155, 96, 0.1);
+  border: 1px dashed #bf9b60;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  letter-spacing: 0.05em;
+  cursor: default;
+  user-select: all;
+}
+
+.gift-qrcode {
+  width: 140px;
+  height: auto;
+  margin-top: 0.75rem;
+  border-radius: 6px;
+}
+
+.gift-card-icon {
+  height: 80px;
+  width: auto;
+  margin-bottom: 0.5rem;
+}
+
+.gift-list-btn {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #bf9b60;
+  text-decoration: none;
+  border: 1px solid #bf9b60;
+  padding: 0.55rem 1.5rem;
+  border-radius: 4px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.gift-list-btn:hover {
+  background: #bf9b60;
+  color: #fff;
+}
+
+/* ── Footer ── */
+.site-footer {
+  width: 100%;
+  padding: 2rem 2rem;
+  text-align: center;
+  background-color: #3a3a3a;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-sep {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 1rem;
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 2rem;
+  color: #bf9b60;
+  letter-spacing: 0.1em;
+}
+
+.footer-phrase {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.05em;
+}
+
+.footer-year {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 0.25rem;
+}
+
 /* ── Pattern Section ── */
 .pattern-section {
   width: 100%;
@@ -680,5 +840,9 @@ html, body {
 
   .map-item-img {
     width: 130%;
+  }
+
+  .gift-options {
+    grid-template-columns: 1fr;
   }
 }

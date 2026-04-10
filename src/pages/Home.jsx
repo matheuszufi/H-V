@@ -202,6 +202,36 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section className="gift-section">
+        <h2 className="gift-title">Presentear os Noivos</h2>
+        <div className="gift-divider"></div>
+        <p className="gift-text">
+          Sua presença já é o nosso maior presente! Mas se desejar nos presentear, aqui estão as opções:
+        </p>
+        <div className="gift-options">
+          <div className="gift-card">
+            <h3 className="gift-card-title">PIX</h3>
+            <p className="gift-card-desc">Chave PIX</p>
+            <div className="gift-pix-key">CHAVE_PIX_AQUI</div>
+            <img src="/images/qrcode.jpeg" alt="QR Code PIX" className="gift-qrcode" />
+          </div>
+          <div className="gift-card">
+            <img src="/images/presents.png" alt="Presentes" className="gift-card-icon" />
+            <h3 className="gift-card-title">Lista de Presentes</h3>
+            <p className="gift-card-desc">Acesse nossa lista e escolha um presente especial</p>
+            <a href="LINK_LISTA_AQUI" target="_blank" rel="noopener noreferrer" className="gift-list-btn">Ver Lista</a>
+          </div>
+        </div>
+      </section>
+
+      <footer className="site-footer">
+        <p className="footer-phrase">&ldquo;E os dois serão uma só carne.&rdquo;</p>
+        <span className="footer-sep">|</span>
+        <p className="footer-logo">H &nbsp;|&nbsp; V</p>
+        <span className="footer-sep">|</span>
+        <p className="footer-year">01 &bull; 08 &bull; 2026</p>
+      </footer>
     </>
   )
 }
