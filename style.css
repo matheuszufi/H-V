@@ -149,7 +149,7 @@ html, body {
 
 @media (max-width: 768px) {
   .hero-title {
-    font-size: 7rem;
+    font-size: 9rem;
     letter-spacing: -5px;
     margin-left: 0px;
   }
