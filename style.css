@@ -10,6 +10,7 @@
 html, body {
   height: 100%;
   background-color: rgb(226, 222, 218);
+  overflow-x: hidden;
 }
 
 /* ── Hero Section ── */
@@ -43,13 +44,65 @@ html, body {
   position: relative;
   z-index: 1;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.save-the-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.save-the-date-title {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #5b4a2e;
+}
+
+.save-the-date-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.save-the-date-row span {
+  flex: 1;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #5b4a2e;
+}
+
+.std-left {
+  text-align: right;
+}
+
+.std-right {
+  text-align: left;
+}
+
+.save-the-date-flower {
+  height: 80px;
+  object-fit: contain;
 }
 
 .hero-title {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
   font-size: 16rem;
-  letter-spacing: -12px;
+  /* letter-spacing: -12px; */
   color: #3a3a3a;
 }
 
@@ -93,13 +146,19 @@ html, body {
 }
 
 @media (max-width: 768px) {
-  .hero-image {
-    max-width: none;
-    max-height: none;
-    width: auto;
-    height: 80vh;
-    margin-top: -80px;
-    object-fit: cover;
+  .hero-title {
+    font-size: 7rem;
+    letter-spacing: -5px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+  }
+
+  .hero-divider {
+    width: 60px;
+    margin: 1rem auto;
   }
 }
 
@@ -413,10 +472,10 @@ html, body {
 .pattern-subtitle {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #bf9b60;
+  color: #272727;
   margin-bottom: 0.5rem;
 }
 
@@ -445,5 +504,19 @@ html, body {
     grid-template-columns: 1fr;
     gap: 2.5rem;
     padding: 3rem 1.5rem;
+  }
+
+  .pattern-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pattern-img {
+    max-height: 300px;
+    max-width: 80vw;
+  }
+
+  .dresscode-columns {
+    grid-template-columns: 1fr;
   }
 }
