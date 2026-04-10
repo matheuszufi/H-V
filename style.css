@@ -126,7 +126,6 @@ html, body {
 }
 
 .location h3,
-.bible h3,
 .obs h3 {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 600;
@@ -143,32 +142,41 @@ html, body {
   margin-top: 0.25rem;
 }
 
-/* Bible */
-.bible {
-  margin-top: 2rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-  padding-top: 1.5rem;
+/* Bible Section */
+.bible-section {
+  width: 100%;
+  padding: 3rem 2rem;
+  text-align: center;
+  background-color: rgb(226, 222, 218);
 }
 
-.bible blockquote {
+.bible-section blockquote {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
   font-style: italic;
-  font-size: 1rem;
-  line-height: 1.8;
+  font-size: 1.25rem;
+  line-height: 2;
   color: #555;
-  margin: 0.75rem 0 0.75rem;
+  max-width: 900px;
+  margin: 0 auto 1rem;
   border: none;
   padding: 0;
 }
 
-.bible cite {
+.bible-section cite {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   letter-spacing: 0.1em;
   color: #bf9b60;
   font-style: normal;
+}
+
+.section-divider {
+  width: 60px;
+  height: 1px;
+  background-color: #bf9b60;
+  margin: 2.5rem auto 0;
 }
 
 /* RSVP */
@@ -217,6 +225,17 @@ html, body {
 
 .obs p {
   line-height: 1.8;
+}
+
+/* ── Map Section ── */
+.map-section {
+  width: 30%;
+  background-color: rgb(226, 222, 218);
+}
+
+.map-image {
+  width: 100%;
+  display: block;
 }
 
 /* ── Mobile: stack columns ── */
