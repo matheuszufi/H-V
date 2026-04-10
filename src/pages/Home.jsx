@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({ dias: 0, horas: 0, minutos: 0, segundos: 0 })
+  const [showPix, setShowPix] = useState(false)
 
   useEffect(() => {
     const target = new Date('2026-08-01T09:30:00').getTime()
@@ -211,10 +212,13 @@ export default function Home() {
         </p>
         <div className="gift-options">
           <div className="gift-card">
+            <img src="/images/pix.png" alt="PIX" className="gift-pix-img" />
             <h3 className="gift-card-title">PIX</h3>
-            <p className="gift-card-desc">Chave PIX</p>
-            <div className="gift-pix-key">CHAVE_PIX_AQUI</div>
-            <img src="/images/qrcode.jpeg" alt="QR Code PIX" className="gift-qrcode" />
+            <p className="gift-card-desc">Ajude os noivos com um PIX</p>
+            <button className="gift-list-btn" onClick={() => setShowPix(!showPix)}>
+              {showPix ? 'Ocultar Chave' : 'Ver Chave'}
+            </button>
+            {showPix && <div className="gift-pix-key">CHAVE_PIX_AQUI</div>}
           </div>
           <div className="gift-card">
             <img src="/images/presents.png" alt="Presentes" className="gift-card-icon" />
