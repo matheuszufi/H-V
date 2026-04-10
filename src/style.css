@@ -308,8 +308,9 @@ html, body {
 .map-section {
   max-width: none;
   margin: 0;
+
   padding: 6rem 2rem 6rem;
-  background-image: url('/images/background-pattern.png');
+  background-image: linear-gradient(rgba(226, 222, 218, 0.4), rgba(226, 222, 218, 0.4)), url('/images/background-pattern.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -598,5 +599,9 @@ html, body {
   .map-content {
     grid-template-columns: 1fr;
     max-width: 360px;
+  }
+
+  .map-item-img {
+    width: 70%;
   }
 }
