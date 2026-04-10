@@ -90,7 +90,7 @@ export default function Home() {
             <p>
               Podem ir de terno completo ou calça social, camisa com ou sem gravata e com ou sem
               blazer, tênis ou sapato. Se desejarem depois para a festa, podem levar uma roupa mais
-              leve pra ficar mais a vontade. A pedido do noivo, evite levar bermuda.
+              leve pra ficar mais a vontade.
             </p>
             <h3 className="dresscode-subtitle dresscode-subtitle-gap">As crianças (no caso aos pais)</h3>
             <p>
