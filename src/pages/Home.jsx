@@ -147,6 +147,7 @@ export default function Home() {
         </p>
         <div className="dresscode-columns">
           <div className="dresscode-col">
+            <img src="/images/groom.png" alt="Noivo" className="dresscode-gender-icon" />
             <h3 className="dresscode-subtitle">Aos homens</h3>
             <p>
               Podem ir de terno completo ou calça social, camisa com ou sem gravata e com ou sem
@@ -160,6 +161,7 @@ export default function Home() {
             </p>
           </div>
           <div className="dresscode-col">
+            <img src="/images/bride.png" alt="Noiva" className="dresscode-gender-icon" />
             <h3 className="dresscode-subtitle">As mulheres</h3>
             <p>
               Vestido social, com tecido à sua escolha! Pode ser mais leve ou alfaiataria. Pedimos
@@ -169,6 +171,10 @@ export default function Home() {
               nossa dica é de levar tênis ou chinelo. Nós noivos ficamos mais a vontade de tênis lá!
             </p>
           </div>
+        </div>
+        <div className="dresscode-icons">
+          <img src="/images/churrasco.png" alt="Churrasco" className="dresscode-icon-img" />
+          <img src="/images/drink-icon.png" alt="Bebidas" className="dresscode-icon-img" />
         </div>
         <p className="dresscode-note">
           A festa será no salão de festas do nosso condomínio. É um espaço mais rural, será uma

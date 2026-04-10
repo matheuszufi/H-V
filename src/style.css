@@ -456,6 +456,25 @@ html, body {
   margin-bottom: 0.5rem;
 }
 
+.dresscode-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.dresscode-icon-img {
+  height: 120px;
+  width: auto;
+}
+
+.dresscode-gender-icon {
+  height: 80px;
+  width: auto;
+  margin-bottom: 0.75rem;
+}
+
 .dresscode-note {
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
