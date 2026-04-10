@@ -208,7 +208,10 @@ export default function Home() {
         <h2 className="gift-title">Presentear os Noivos</h2>
         <div className="gift-divider"></div>
         <p className="gift-text">
-          Sua presença já é o nosso maior presente! Mas se desejar nos presentear, aqui estão as opções:
+          Aos que quiserem nos presentear e nos ajudar nesse nosso início de vida de casal e
+          construção da nossa futura família, vamos deixar uma chave PIX aqui! Nós não teremos listas
+          de presentes nem especificação de valores, mas qualquer ajuda vai ser muito significativa
+          para nós!
         </p>
         <div className="gift-options">
           <div className="gift-card">
