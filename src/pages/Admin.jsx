@@ -44,10 +44,8 @@ export default function Admin() {
 
   const confirmed = guests.filter((g) => g.status === 'confirmado')
   const pending = guests.filter((g) => g.status !== 'confirmado')
-  const totalPeople = guests.reduce((sum, g) => sum + (g.quantidade || g.pessoas?.length || 1), 0)
-  const confirmedPeople = confirmed.reduce((sum, g) => sum + (g.quantidade || g.pessoas?.length || 1), 0)
 
-  const getGuestName = (g) => (g.pessoas ? g.pessoas.join(', ') : g.nome || '')
+  const getGuestName = (g) => g.nome || ''
 
   const filteredGuests = guests
     .filter((g) => {
@@ -88,14 +86,7 @@ export default function Admin() {
             <span className="stat-number">{pending.length}</span>
             <span className="stat-label">Pendentes</span>
           </div>
-          <div className="stat-card">
-            <span className="stat-number">{totalPeople}</span>
-            <span className="stat-label">Total Pessoas</span>
-          </div>
-          <div className="stat-card stat-confirmed">
-            <span className="stat-number">{confirmedPeople}</span>
-            <span className="stat-label">Pessoas Confirmadas</span>
-          </div>
+
         </div>
 
         <div className="admin-toolbar">
@@ -146,8 +137,7 @@ export default function Admin() {
               <table className="admin-table">
                 <thead>
                   <tr>
-                    <th>Pessoas</th>
-                    <th>Qtd</th>
+                    <th>Nome</th>
                     <th>Mensagem</th>
                     <th>Status</th>
                     <th>Ações</th>
@@ -157,7 +147,6 @@ export default function Admin() {
                   {filteredGuests.map((guest) => (
                     <tr key={guest.id}>
                       <td className="admin-guest-name">{getGuestName(guest)}</td>
-                      <td>{guest.quantidade || guest.pessoas?.length || 1}</td>
                       <td className="admin-msg">{guest.mensagem || '—'}</td>
                       <td>
                         <span className={`badge ${guest.status === 'confirmado' ? 'badge-confirmed' : 'badge-pending'}`}>

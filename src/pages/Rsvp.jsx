@@ -36,13 +36,17 @@ export default function Rsvp() {
     }
 
     try {
-      await addDoc(collection(db, 'rsvp'), {
-        pessoas: nomes,
-        quantidade: nomes.length,
-        mensagem: mensagem.trim(),
-        status: 'confirmado',
-        criadoEm: new Date().toISOString(),
-      })
+      const grupoId = crypto.randomUUID()
+      const agora = new Date().toISOString()
+      for (let i = 0; i < nomes.length; i++) {
+        await addDoc(collection(db, 'rsvp'), {
+          nome: nomes[i],
+          mensagem: i === 0 ? mensagem.trim() : '',
+          status: 'confirmado',
+          grupoId,
+          criadoEm: agora,
+        })
+      }
       setEnviado(true)
     } catch {
       setErro('Erro ao confirmar. Tente novamente.')
