@@ -1,0 +1,114 @@
+.mapas-page {
+  min-height: 100vh;
+  background-color: rgb(226, 222, 218);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 2rem;
+}
+
+.mapas-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 3rem;
+  color: #3a3a3a;
+}
+
+.mapas-divider {
+  width: 60px;
+  height: 1px;
+  background-color: #bf9b60;
+  margin: 1.5rem 0;
+}
+
+.mapas-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1.4rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #3a3a3a;
+  margin-bottom: 2.5rem;
+}
+
+.mapas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.mapas-item {
+  text-align: center;
+}
+
+.mapas-item-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #3a3a3a;
+  margin-bottom: 0.4rem;
+}
+
+.mapas-item-desc {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.mapas-item-address {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 0.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.mapas-img-placeholder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px dashed rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.8rem;
+  color: #bbb;
+}
+
+.mapas-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.mapas-back {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #bf9b60;
+  text-decoration: none;
+  border: 1px solid #bf9b60;
+  padding: 0.6rem 1.5rem;
+  border-radius: 4px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.mapas-back:hover {
+  background: #bf9b60;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .mapas-grid {
+    grid-template-columns: 1fr;
+  }
+}

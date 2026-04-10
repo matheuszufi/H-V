@@ -66,6 +66,8 @@ export default function Home() {
             <p>Rua José Konhevalik, 50, Bratislava,<br />Cambé-PR - 86189-095</p>
             <p className="location-name">Salão de Festas do Condomínio Recanto Golf Ville</p>
           </div>
+
+          <Link to="/mapas" className="ver-mapas-btn">Ver Mapas</Link>
         </div>
 
         <div className="col col-right">
