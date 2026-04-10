@@ -308,7 +308,7 @@ html, body {
 .map-section {
   max-width: none;
   margin: 0;
-  padding: 10rem 2rem 3rem;
+  padding: 6rem 2rem 6rem;
   background-image: url('/images/background-pattern.png');
   background-size: cover;
   background-position: center;
