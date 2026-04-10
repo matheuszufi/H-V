@@ -115,6 +115,133 @@
 }
 
 /* Table */
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.admin-search {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+  max-width: 400px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: #bbb;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.7rem 2.2rem 0.7rem 2.5rem;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.85rem;
+  color: #3a3a3a;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+.search-input:focus {
+  border-color: #bf9b60;
+  box-shadow: 0 0 0 3px rgba(191, 155, 96, 0.1);
+}
+
+.search-input::placeholder {
+  color: #bbb;
+}
+
+.search-clear {
+  position: absolute;
+  right: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #bbb;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.search-clear:hover {
+  color: #999;
+}
+
+.admin-filters {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filter-btn {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  color: #999;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.filter-btn:hover {
+  border-color: #bf9b60;
+  color: #bf9b60;
+}
+
+.filter-btn.filter-active {
+  background: #3a3a3a;
+  border-color: #3a3a3a;
+  color: #fff;
+}
+
+.filter-count {
+  font-size: 0.7rem;
+  background: rgba(0, 0, 0, 0.08);
+  padding: 0.1rem 0.45rem;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.filter-active .filter-count {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.admin-results-count {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.78rem;
+  color: #bbb;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.03em;
+}
+
+.admin-guest-name {
+  font-weight: 500;
+  color: #3a3a3a !important;
+}
+
 .admin-table-wrapper {
   overflow-x: auto;
 }
@@ -232,6 +359,19 @@
 
   .admin-stats {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-search {
+    max-width: none;
+  }
+
+  .admin-filters {
+    justify-content: center;
   }
 
   .admin-actions {
