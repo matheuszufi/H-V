@@ -1,0 +1,91 @@
+.login-page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(226, 222, 218);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 360px;
+  padding: 2rem;
+}
+
+.login-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 4rem;
+  color: #3a3a3a;
+}
+
+.login-subtitle {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #999;
+  margin-top: 0.5rem;
+}
+
+.login-divider {
+  width: 60px;
+  height: 1px;
+  background-color: #bf9b60;
+  margin: 1.5rem 0 2rem;
+}
+
+.login-error {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.85rem;
+  color: #c0392b;
+  margin-bottom: 1rem;
+}
+
+.login-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.9rem;
+  color: #3a3a3a;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.login-input:focus {
+  border-color: #bf9b60;
+}
+
+.login-input::placeholder {
+  color: #999;
+}
+
+.login-button {
+  width: 100%;
+  padding: 0.75rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #bf9b60;
+  background: transparent;
+  border: 1px solid #bf9b60;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.login-button:hover {
+  background: #bf9b60;
+  color: #fff;
+}

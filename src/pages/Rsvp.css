@@ -1,0 +1,208 @@
+.rsvp-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(226, 222, 218);
+  padding: 2rem;
+}
+
+.rsvp-card {
+  width: 100%;
+  max-width: 460px;
+  text-align: center;
+}
+
+.rsvp-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 3.5rem;
+  color: #3a3a3a;
+}
+
+.rsvp-divider {
+  width: 60px;
+  height: 1px;
+  background-color: #bf9b60;
+  margin: 1.2rem auto 1.5rem;
+}
+
+.rsvp-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1.4rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #3a3a3a;
+  margin-bottom: 0.5rem;
+}
+
+.rsvp-info {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: #999;
+  margin-bottom: 2rem;
+}
+
+.rsvp-error {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.85rem;
+  color: #c0392b;
+  margin-bottom: 1rem;
+}
+
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  text-align: left;
+}
+
+.rsvp-label {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #bf9b60;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.rsvp-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.9rem;
+  color: #3a3a3a;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.rsvp-input:focus {
+  border-color: #bf9b60;
+}
+
+.rsvp-input::placeholder {
+  color: #bbb;
+}
+
+.rsvp-pessoa-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.rsvp-pessoa-row .rsvp-label {
+  flex: 1;
+}
+
+.rsvp-remove {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 2px;
+  font-size: 1.2rem;
+  color: #c0392b;
+  background: transparent;
+  border: 1px solid #c0392b;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  flex-shrink: 0;
+}
+
+.rsvp-remove:hover {
+  background: #c0392b;
+  color: #fff;
+}
+
+.rsvp-add {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: #bf9b60;
+  background: transparent;
+  border: 1px dashed #bf9b60;
+  border-radius: 4px;
+  padding: 0.6rem;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.rsvp-add:hover {
+  background: #bf9b60;
+  color: #fff;
+}
+
+.rsvp-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.rsvp-submit {
+  width: 100%;
+  padding: 0.85rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #bf9b60;
+  background: transparent;
+  border: 1px solid #bf9b60;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  margin-top: 0.5rem;
+}
+
+.rsvp-submit:hover {
+  background: #bf9b60;
+  color: #fff;
+}
+
+/* Success */
+.rsvp-success-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  letter-spacing: 0.1em;
+  color: #3a3a3a;
+  margin-bottom: 1rem;
+}
+
+.rsvp-success-text {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.rsvp-back {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #bf9b60;
+  text-decoration: none;
+  border: 1px solid #bf9b60;
+  border-radius: 4px;
+  padding: 0.5rem 1.5rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.rsvp-back:hover {
+  background: #bf9b60;
+  color: #fff;
+}
