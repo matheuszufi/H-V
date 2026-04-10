@@ -62,7 +62,7 @@ html, body {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
   font-size: 0.85rem;
-  margin-left: 24px;
+  margin-left: 4px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: #5b4a2e;
@@ -103,6 +103,7 @@ html, body {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
   font-size: 16rem;
+  margin-left: -24px;
   /* letter-spacing: -12px; */
   color: #3a3a3a;
 }
@@ -150,6 +151,7 @@ html, body {
   .hero-title {
     font-size: 7rem;
     letter-spacing: -5px;
+    margin-left: 0px;
   }
 
   .hero-subtitle {
