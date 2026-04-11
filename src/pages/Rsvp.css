@@ -5,6 +5,10 @@
   align-items: center;
   justify-content: center;
   background-color: rgb(226, 222, 218);
+  background-image: url('/images/clouds.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   padding: 2rem;
 }
 
