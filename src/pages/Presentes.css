@@ -365,6 +365,83 @@
   margin-top: 0.25rem;
 }
 
+/* ── Toggle PIX / Cartão ── */
+.pay-toggle {
+  display: flex;
+  gap: 0;
+  border: 1px solid #bf9b60;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 0.75rem 0 0.25rem;
+}
+
+.pay-toggle-btn {
+  flex: 1;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #bf9b60;
+  background: transparent;
+  border: none;
+  padding: 0.6rem 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.pay-toggle-btn + .pay-toggle-btn {
+  border-left: 1px solid #bf9b60;
+}
+.pay-toggle-btn.active {
+  background: #bf9b60;
+  color: #fff;
+}
+
+/* ── Campos do cartão ── */
+.card-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+.card-row {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.card-field-half {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Select ── */
+.modal-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23bf9b60' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  padding-right: 2.2rem;
+  cursor: pointer;
+}
+
+/* ── Ícone de sucesso ── */
+.modal-success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(191, 155, 96, 0.12);
+  border: 2px solid #bf9b60;
+  font-size: 1.5rem;
+  color: #bf9b60;
+  margin: 0 auto 0.75rem;
+}
+
 /* ══════════════════════════════════════════════
    Responsivo
    ══════════════════════════════════════════════ */
