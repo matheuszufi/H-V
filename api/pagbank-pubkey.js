@@ -8,6 +8,11 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Método não permitido' })
   }
 
+  // If the public key is preconfigured, return it directly
+  if (process.env.PAGBANK_PUBLIC_KEY) {
+    return res.status(200).json({ publicKey: process.env.PAGBANK_PUBLIC_KEY })
+  }
+
   const PAGBANK_TOKEN = process.env.PAGBANK_TOKEN
   const IS_SANDBOX = process.env.PAGBANK_SANDBOX === 'true'
 
@@ -19,10 +24,12 @@ export default async function handler(req, res) {
     ? 'https://sandbox.api.pagseguro.com'
     : 'https://api.pagseguro.com'
 
+  const pubKeyHeaders = { Authorization: `Bearer ${PAGBANK_TOKEN}` }
+
   try {
     const r = await fetch(`${BASE_URL}/public-keys/card`, {
       method: 'GET',
-      headers: { Authorization: `Bearer ${PAGBANK_TOKEN}` },
+      headers: pubKeyHeaders,
     })
 
     const text = await r.text()
