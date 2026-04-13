@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({ dias: 0, horas: 0, minutos: 0, segundos: 0 })
-  const [showPix, setShowPix] = useState(false)
 
   useEffect(() => {
     const target = new Date('2026-08-01T09:30:00').getTime()
@@ -205,29 +204,13 @@ export default function Home() {
       </section>
 
       <section className="gift-section">
-        <h2 className="gift-title">Presentear os Noivos</h2>
-        <div className="gift-divider"></div>
-        <p className="gift-text">
-          Aos que quiserem nos presentear e nos ajudar nesse nosso início de vida de casal e
-          construção da nossa futura família, vamos deixar uma chave PIX aqui! Nós não teremos listas
-          de presentes nem especificação de valores, mas qualquer ajuda vai ser muito significativa
-          para nós!
-        </p>
-        <div className="gift-options">
-          <div className="gift-card">
-            <img src="/images/pix.png" alt="PIX" className="gift-pix-img" />
-            <h3 className="gift-card-title">PIX</h3>
-            <p className="gift-card-desc">Ajude os noivos com um PIX</p>
-            <button className="gift-list-btn" onClick={() => setShowPix(!showPix)}>
-              {showPix ? 'Ocultar Chave' : 'Ver Chave'}
-            </button>
-            {showPix && <div className="gift-pix-key">CHAVE_PIX_AQUI</div>}
-          </div>
-          <div className="gift-card">
-            <img src="/images/presents.png" alt="Presentes" className="gift-card-icon" />
-            <h3 className="gift-card-title">Lista de Presentes</h3>
-            <p className="gift-card-desc">Acesse nossa lista e escolha um presente especial</p>
-            <a href="LINK_LISTA_AQUI" target="_blank" rel="noopener noreferrer" className="gift-list-btn">Ver Lista</a>
+        <div className="gift-list-row">
+          <img src="/images/presents.png" alt="Presentes" className="gift-card-icon" />
+          <div className="gift-list-text">
+            <h2 className="gift-title">Presentear os noivos</h2>
+            <div className="gift-divider"></div>
+            <p className="gift-card-desc">Acesse a página e deixe um presente especial para os noivos.</p>
+            <Link to="/presentes" className="gift-list-btn">Presentear os Noivos</Link>
           </div>
         </div>
       </section>

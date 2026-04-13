@@ -570,14 +570,28 @@ html, body {
 .gift-section {
   width: 100%;
   padding: 5rem 2rem;
-  text-align: center;
   background-color: rgb(226, 222, 218);
+}
+
+.gift-list-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.gift-list-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .gift-title {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 400;
-  font-size: 1.8rem;
+  font-size: 2.6rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #3a3a3a;
@@ -587,52 +601,16 @@ html, body {
   width: 60px;
   height: 1px;
   background-color: #bf9b60;
-  margin: 1.5rem auto;
-}
-
-.gift-text {
-  font-family: 'Raleway', sans-serif;
-  font-weight: 300;
-  font-size: 0.9rem;
-  color: #777;
-  max-width: 500px;
-  margin: 0 auto 2.5rem;
-  line-height: 1.8;
-}
-
-.gift-options {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-.gift-card {
-  /* background: #fff; */
-  /* border: 1px solid rgba(0, 0, 0, 0.07); */
-  border-radius: 10px;
-  padding: 2rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.gift-card-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-size: 1.2rem;
-  color: #3a3a3a;
-  letter-spacing: 0.05em;
+  margin: 1.2rem 0;
 }
 
 .gift-card-desc {
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
-  font-size: 0.82rem;
-  color: #999;
-  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 1.25rem;
+  line-height: 1.8;
 }
 
 .gift-pix-key {
@@ -657,28 +635,22 @@ html, body {
 }
 
 .gift-card-icon {
-  height: 80px;
+  height: 160px;
   width: auto;
-  margin-bottom: 0.5rem;
-}
-
-.gift-pix-img {
-  height: 80px;
-  width: auto;
-  margin: 0.5rem 0;
+  flex-shrink: 0;
 }
 
 .gift-list-btn {
   font-family: 'Raleway', sans-serif;
   font-weight: 500;
-  font-size: 0.82rem;
+  font-size: 1rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #bf9b60;
   text-decoration: none;
   background: transparent;
   border: 1px solid #bf9b60;
-  padding: 0.55rem 1.5rem;
+  padding: 0.75rem 2.2rem;
   border-radius: 4px;
   cursor: pointer;
   transition: background 0.3s, color 0.3s;
@@ -850,7 +822,18 @@ html, body {
     width: 130%;
   }
 
-  .gift-options {
-    grid-template-columns: 1fr;
+  .gift-list-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .gift-list-text {
+    align-items: center;
+    text-align: center;
+  }
+
+  .gift-divider {
+    margin: 1.2rem auto;
   }
 }
