@@ -210,7 +210,6 @@ export default function Home() {
             <h2 className="gift-title">Presentear os noivos</h2>
             <div className="gift-divider"></div>
             <p className="gift-card-desc">Acesse a página e deixe um presente especial para os noivos.</p>
-            <Link to="/presentes" className="gift-list-btn">Presentear os Noivos</Link>
           </div>
         </div>
       </section>
