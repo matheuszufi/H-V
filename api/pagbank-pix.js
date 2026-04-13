@@ -45,25 +45,22 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         reference_id,
-        // description limitada a 64 caracteres conforme especificação PagBank
         description: description.substring(0, 64),
         amount: {
-          value: amount,   // em centavos (ex: R$ 3,50 → 350)
+          value: amount,
           currency: 'BRL',
         },
         payment_method: {
           type: 'PIX',
-          installments: 1,
-          capture: true,
         },
-        notification_urls: [],
       }),
     })
 
     if (!pagbankRes.ok) {
       const errorBody = await pagbankRes.json().catch(() => ({}))
       const messages =
-        errorBody?.error_messages?.map((m) => m.description).join(', ') ||
+        errorBody?.error_messages?.map((m) => `${m.code}: ${m.description}`).join(', ') ||
+        JSON.stringify(errorBody) ||
         `Erro PagBank (HTTP ${pagbankRes.status})`
       return res.status(pagbankRes.status).json({ error: messages })
     }
