@@ -31,6 +31,7 @@ const fmt = (value) =>
 export default function Presentes() {
   const [selected, setSelected]     = useState(null)
   const [payerName, setPayerName]   = useState('')
+  const [payerCpf, setPayerCpf]     = useState('')
   const [pixData, setPixData]       = useState(null)
   const [loading, setLoading]       = useState(false)
   const [error, setError]           = useState('')
@@ -39,6 +40,7 @@ export default function Presentes() {
   const openModal = (gift) => {
     setSelected(gift)
     setPayerName('')
+    setPayerCpf('')
     setPixData(null)
     setError('')
     setCopied(false)
@@ -57,6 +59,11 @@ export default function Presentes() {
       setError('Por favor, informe seu nome.')
       return
     }
+    const cpfDigits = payerCpf.replace(/\D/g, '')
+    if (cpfDigits.length !== 11) {
+      setError('Por favor, informe um CPF válido (11 dígitos).')
+      return
+    }
     setLoading(true)
     setError('')
     try {
@@ -64,10 +71,11 @@ export default function Presentes() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          amount: selected.value * 100, // converte para centavos
+          amount: selected.value * 100,
           description: selected.name,
           reference_id: crypto.randomUUID(),
           payer_name: payerName.trim(),
+          payer_cpf: cpfDigits,
         }),
       })
 
@@ -142,7 +150,7 @@ export default function Presentes() {
                 <p className="modal-gift-value">{fmt(selected.value)}</p>
                 <div className="modal-divider"></div>
                 <p className="modal-instructions">
-                  Informe seu nome e clique em <strong>Gerar PIX</strong> para receber o código de
+                  Informe seus dados e clique em <strong>Gerar PIX</strong> para receber o código de
                   pagamento.
                 </p>
                 <form onSubmit={handleGerar} className="modal-form">
@@ -156,6 +164,26 @@ export default function Presentes() {
                     onChange={(e) => setPayerName(e.target.value)}
                     maxLength={100}
                     autoComplete="name"
+                  />
+                  <label className="modal-label" htmlFor="payer-cpf">CPF</label>
+                  <input
+                    id="payer-cpf"
+                    type="text"
+                    className="modal-input"
+                    placeholder="000.000.000-00"
+                    value={payerCpf}
+                    onChange={(e) => {
+                      // Aplica máscara CPF
+                      const v = e.target.value.replace(/\D/g, '').slice(0, 11)
+                      const masked = v
+                        .replace(/(\d{3})(\d)/, '$1.$2')
+                        .replace(/(\d{3})(\d)/, '$1.$2')
+                        .replace(/(\d{3})(\d{1,2})$/, '$1-$2')
+                      setPayerCpf(masked)
+                    }}
+                    maxLength={14}
+                    autoComplete="off"
+                    inputMode="numeric"
                   />
                   {error && <p className="modal-error">{error}</p>}
                   <button type="submit" className="modal-submit-btn" disabled={loading}>
