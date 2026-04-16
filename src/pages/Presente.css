@@ -332,6 +332,81 @@
   color: #bf9b60;
 }
 
+/* ── Seleção de método de pagamento ─────────────────────────────────────── */
+.presente-payment-methods {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.presente-method-btn {
+  flex: 1;
+  padding: 0.7rem 0.5rem;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #bf9b60;
+  background: transparent;
+  border: 1px solid rgba(191, 155, 96, 0.45);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.presente-method-btn:hover {
+  background: rgba(191, 155, 96, 0.1);
+}
+
+.presente-method-btn.active {
+  background: #bf9b60;
+  color: #fff;
+  border-color: #bf9b60;
+}
+
+/* Preview de parcelas */
+.presente-installments-preview {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: #bf9b60;
+  text-align: center;
+  margin-top: -0.4rem;
+}
+
+/* Botão desabilitado (carregando) */
+.presente-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Formulário cartão ───────────────────────────────────────────────────── */
+.presente-card-row {
+  display: flex;
+  gap: 1rem;
+}
+
+/* ── Ícone de sucesso ────────────────────────────────────────────────────── */
+.presente-success-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(191, 155, 96, 0.15);
+  border: 1.5px solid #bf9b60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: #bf9b60;
+  margin: 0 auto 1rem;
+}
+
+/* ── Remoção de seta no select ───────────────────────────────────────────── */
+.presente-input[type='number']::-webkit-inner-spin-button,
+.presente-input[type='number']::-webkit-outer-spin-button {
+  opacity: 0.4;
+}
+
 /* Responsive */
 @media (max-width: 480px) {
   .presente-logo {
@@ -354,5 +429,10 @@
   .presente-qrcode {
     width: 170px;
     height: 170px;
+  }
+
+  .presente-card-row {
+    flex-direction: column;
+    gap: 0.8rem;
   }
 }
