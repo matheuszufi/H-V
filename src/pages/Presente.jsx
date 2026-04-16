@@ -66,8 +66,6 @@ export default function Presente() {
     script.async = true
     document.head.appendChild(script)
   }, [paymentMethod])
-
-  // ── Step 1: valida e decide fluxo ─────────────────────────────────────────
   async function handleStep1Submit(e) {
     e.preventDefault()
     setError('')
@@ -112,9 +110,14 @@ export default function Presente() {
 
     let encryptedCard
     try {
+      // Busca a chave pública via endpoint servidor (token nunca exposto ao browser)
+      const pkRes = await fetch('/api/public-key')
+      if (!pkRes.ok) return setError('Não foi possível obter chave de segurança. Tente novamente.')
+      const { publicKey } = await pkRes.json()
+
       const [expMonth, expYearShort] = expiry.split('/')
       const result = PagSeguro.encryptCard({
-        publicKey: import.meta.env.VITE_PAGBANK_PUBLIC_KEY,
+        publicKey,
         holder: cardHolder.trim().toUpperCase(),
         number: cardNumber.replace(/\s/g, ''),
         expMonth,

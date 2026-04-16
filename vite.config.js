@@ -5,10 +5,9 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    // Encaminha /api/* para o servidor Vercel Dev (porta 3000) durante dev local
-    // Para usar: rode `vercel dev` na raiz (não `npm run dev`)
+    // Encaminha /api/* para o servidor local de dev (dev-server.mjs)
     proxy: {
-      '/api': 'http://localhost:3000',
+      '/api': 'http://localhost:3002',
     },
   },
 })
