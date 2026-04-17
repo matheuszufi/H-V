@@ -12,6 +12,11 @@ export default async function handler(req, res) {
   const token = process.env.PAGBANK_TOKEN
   if (!token) return res.status(500).json({ error: 'Token PagBank não configurado' })
 
+  const isSandbox = (process.env.PAGBANK_ENV ?? 'sandbox') === 'sandbox'
+  const PAGBANK_BASE_URL = isSandbox
+    ? 'https://sandbox.api.pagseguro.com'
+    : 'https://api.pagseguro.com'
+
   // Vercel já faz parse do body JSON automaticamente
   const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body
   const { paymentMethod, amount, buyer, card } = body ?? {}
@@ -36,8 +41,7 @@ export default async function handler(req, res) {
     reference_id: `presente-hv-${Date.now()}`,
     customer: {
       name: buyer.name,
-      // No sandbox PagBank requer e-mail do comprador no domínio sandbox
-      email: 'comprador@sandbox.pagseguro.com.br',
+      email: isSandbox ? 'comprador@sandbox.pagseguro.com.br' : (buyer.email ?? 'comprador@email.com'),
       tax_id: cpf,
       phones: [{ country: '55', area: '43', number: '999999999', type: 'MOBILE' }],
     },
@@ -75,9 +79,9 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Método de pagamento inválido' })
   }
 
-  // ── Chamada à API PagBank Sandbox ─────────────────────────────────────────
+  // ── Chamada à API PagBank ──────────────────────────────────────────────────
   try {
-    const response = await fetch('https://sandbox.api.pagseguro.com/orders', {
+    const response = await fetch(`${PAGBANK_BASE_URL}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
