@@ -6,7 +6,7 @@ import './Presente.css'
 
 const PRESET_VALUES = [80, 100, 150, 200, 300, 500]
 const MIN_AMOUNT = 50
-const PIX_KEY = '+5543999909090'
+const PIX_KEY = 'heldermateusm23@gmail.com'
 const MERCHANT_NAME = 'H E V CASAMENTO'
 const MERCHANT_CITY = 'LONDRINA'
 
