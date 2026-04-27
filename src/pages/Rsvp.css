@@ -47,7 +47,21 @@
   font-weight: 300;
   font-size: 0.85rem;
   color: #999;
+  margin-bottom: 1rem;
+}
+
+.rsvp-notice {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 0.82rem;
+  color: #888;
+  line-height: 1.7;
   margin-bottom: 2rem;
+  padding: 1rem 1.2rem;
+  border-left: 2px solid rgba(191, 155, 96, 0.5);
+  background: rgba(191, 155, 96, 0.05);
+  border-radius: 0 4px 4px 0;
+  text-align: left;
 }
 
 .rsvp-error {
