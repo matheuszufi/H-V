@@ -82,12 +82,15 @@ export default function Rsvp() {
         <p className="rsvp-info">
           Confirme sua presença no máximo até o dia <strong>29/06/2026</strong>.
         </p>
-        <p className="rsvp-notice">
-          Para que possamos organizar tudo com muito carinho, pedimos que a confirmação de presença seja feita apenas para as pessoas que constam no convite.
-          Nosso espaço possui capacidade limitada, por isso não será possível incluir convidados extras.
-          <br /><br />
-          Agradecemos muito a compreensão e estamos ansiosos para celebrar esse momento com vocês!
-        </p>
+        <div className="rsvp-notice">
+          <img src="/images/alert-icon.png" alt="Aviso" className="rsvp-notice-icon" />
+          <p>
+            Para que possamos organizar tudo com muito carinho, pedimos que a confirmação de presença seja feita apenas para as pessoas que constam no convite.
+            Nosso espaço possui capacidade limitada, por isso não será possível incluir convidados extras.
+            <br /><br />
+            Agradecemos muito a compreensão e estamos ansiosos para celebrar esse momento com vocês!
+          </p>
+        </div>
 
         {erro && <p className="rsvp-error">{erro}</p>}
 

@@ -14,7 +14,7 @@
 
 .rsvp-card {
   width: 100%;
-  max-width: 460px;
+  max-width: 680px;
   text-align: center;
 }
 
@@ -51,17 +51,35 @@
 }
 
 .rsvp-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   color: #888;
   line-height: 1.7;
   margin-bottom: 2rem;
   padding: 1rem 1.2rem;
   border-left: 2px solid rgba(191, 155, 96, 0.5);
-  background: rgba(191, 155, 96, 0.05);
+  background: rgba(191, 155, 96, 0.25);
   border-radius: 0 4px 4px 0;
   text-align: left;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.rsvp-notice-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  object-fit: contain;
+}
+
+.rsvp-notice p {
+  margin: 0;
 }
 
 .rsvp-error {
