@@ -218,6 +218,9 @@ export default function Admin() {
                     </tbody>
                   </table>
                 </div>
+                <div className="admin-table-footer">
+                  <span>{confirmed.length} confirmado{confirmed.length !== 1 ? 's' : ''} de {guests.length} convidado{guests.length !== 1 ? 's' : ''}</span>
+                </div>
               </>
             )}
           </>
@@ -275,6 +278,27 @@ export default function Admin() {
                         <th>Valor</th>
                         <th>Data</th>
                         <th>Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredPresentes.map((p) => (
+                        <tr key={p.id}>
+                          <td data-label="Nome" className="admin-guest-name">{p.nome || '—'}</td>
+                          <td data-label="Valor" className="admin-valor">
+                            {(p.valor || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                          </td>
+                          <td data-label="Data">{formatDate(p.timestamp)}</td>
+                          <td className="admin-actions">
+                            <button onClick={() => removePresente(p.id)} className="btn-remove">Remover</button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="admin-table-footer admin-table-footer-total">
+                  <span>Total recebido: <strong>{formattedTotal}</strong></span>
+                </div>
                       </tr>
                     </thead>
                     <tbody>

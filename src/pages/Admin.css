@@ -296,6 +296,23 @@
   -webkit-overflow-scrolling: touch;
 }
 
+.admin-table-footer {
+  margin-top: 0.75rem;
+  padding: 0.6rem 1rem;
+  background: rgba(191, 155, 96, 0.08);
+  border: 1px solid rgba(191, 155, 96, 0.25);
+  border-radius: 6px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.85rem;
+  color: #5a5a5a;
+  text-align: right;
+}
+
+.admin-table-footer-total strong {
+  color: #bf9b60;
+  font-weight: 600;
+}
+
 .admin-table {
   width: 100%;
   border-collapse: collapse;
