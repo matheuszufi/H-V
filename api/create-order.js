@@ -29,8 +29,8 @@ export default async function handler(req, res) {
   const total = calcInstallmentTotal(parseFloat(amount), n)
   const amountCents = Math.round(total * 100)
 
-  const token = process.env.PAGBANK_TOKEN
-  const isProd = process.env.PAGBANK_ENV === 'production'
+  const token = (process.env.PAGBANK_TOKEN || '').trim()
+  const isProd = (process.env.PAGBANK_ENV || '').trim() === 'production'
   const baseUrl = isProd
     ? 'https://api.pagseguro.com'
     : 'https://sandbox.api.pagseguro.com'

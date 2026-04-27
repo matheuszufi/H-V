@@ -1,8 +1,8 @@
 // GET /api/public-key
 // Retorna a chave pública do PagBank para encriptação do cartão no frontend
 export default async function handler(req, res) {
-  const token = process.env.PAGBANK_TOKEN
-  const isProd = process.env.PAGBANK_ENV === 'production'
+  const token = (process.env.PAGBANK_TOKEN || '').trim()
+  const isProd = (process.env.PAGBANK_ENV || '').trim() === 'production'
   const baseUrl = isProd
     ? 'https://api.pagseguro.com'
     : 'https://sandbox.api.pagseguro.com'
