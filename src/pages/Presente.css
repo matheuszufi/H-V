@@ -250,6 +250,7 @@
   height: 200px;
   border-radius: 6px;
   margin-bottom: 1.2rem;
+  box-shadow: 0 0 120px 20px rgba(255, 255, 255, 0.85);
 }
 
 .presente-pix-instructions {
