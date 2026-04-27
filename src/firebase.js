@@ -3,7 +3,7 @@ import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCYx7L4tM0zXi7qWetcFZJVbrz5W0tjIrg',
+  apiKey: 'AIzaSyAYLpylBgyru7--Q7vhtjiKovA4TgJ4kf4',
   authDomain: 'casamentoheldervanessa.firebaseapp.com',
   projectId: 'casamentoheldervanessa',
   storageBucket: 'casamentoheldervanessa.firebasestorage.app',
