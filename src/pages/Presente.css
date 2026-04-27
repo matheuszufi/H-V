@@ -170,6 +170,20 @@
   border-color: #bf9b60;
 }
 
+.presente-preset-test {
+  border-style: dashed;
+  color: #aaa;
+  border-color: rgba(150, 150, 150, 0.4);
+  font-size: 0.72rem;
+}
+
+.presente-preset-test.active {
+  background: #888;
+  color: #fff;
+  border-color: #888;
+  border-style: solid;
+}
+
 /* Submit */
 .presente-submit {
   width: 100%;
@@ -379,6 +393,17 @@
 .presente-submit:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+/* ── Aviso segurança cartão ─────────────────────────────────────────────── */
+.presente-card-notice {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: #999;
+  line-height: 1.6;
+  margin-top: -0.4rem;
+  margin-bottom: -0.4rem;
 }
 
 /* ── Formulário cartão ───────────────────────────────────────────────────── */
