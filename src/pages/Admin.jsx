@@ -54,6 +54,14 @@ export default function Admin() {
     setPresentes((prev) => prev.filter((p) => p.id !== id))
   }
 
+  const togglePagamento = async (presente) => {
+    const newPago = !presente.pago
+    await updateDoc(doc(db, 'presentes', presente.id), { pago: newPago })
+    setPresentes((prev) =>
+      prev.map((p) => (p.id === presente.id ? { ...p, pago: newPago } : p))
+    )
+  }
+
   // ── RSVP stats ───────────────────────────────────────────────────────────
   const confirmed = guests.filter((g) => g.status === 'confirmado')
   const pending = guests.filter((g) => g.status !== 'confirmado')
@@ -72,10 +80,23 @@ export default function Admin() {
     .sort((a, b) => getGuestName(a).localeCompare(getGuestName(b), 'pt-BR'))
 
   // ── Presentes stats ───────────────────────────────────────────────────────
-  const totalPresentes = presentes.reduce((sum, p) => sum + (p.valor || 0), 0)
+  const presentesPagos = presentes.filter((p) => p.pago)
+  const presentesAguardando = presentes.filter((p) => !p.pago)
+  const totalPresentes = presentesPagos.reduce((sum, p) => sum + (p.valor || 0), 0)
   const formattedTotal = totalPresentes.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 
-  const filteredPresentes = presentes
+  const filteredAguardando = presentesAguardando
+    .filter((p) => {
+      if (!search.trim()) return true
+      return (p.nome || '').toLowerCase().includes(search.toLowerCase())
+    })
+    .sort((a, b) => {
+      const ta = a.timestamp?.toMillis?.() ?? 0
+      const tb = b.timestamp?.toMillis?.() ?? 0
+      return tb - ta
+    })
+
+  const filteredPagos = presentesPagos
     .filter((p) => {
       if (!search.trim()) return true
       return (p.nome || '').toLowerCase().includes(search.toLowerCase())
@@ -229,17 +250,27 @@ export default function Admin() {
         {/* ── Presentes Tab ─────────────────────────────────────────────── */}
         {activeTab === 'presentes' && (
           <>
+            {/* Stats gerais */}
             <div className="admin-stats">
               <div className="stat-card">
                 <span className="stat-number">{presentes.length}</span>
-                <span className="stat-label">Presentes</span>
+                <span className="stat-label">Total PIX Gerados</span>
               </div>
               <div className="stat-card stat-confirmed">
+                <span className="stat-number">{presentesPagos.length}</span>
+                <span className="stat-label">Pagamentos Confirmados</span>
+              </div>
+              <div className="stat-card stat-pending">
+                <span className="stat-number">{presentesAguardando.length}</span>
+                <span className="stat-label">Aguardando Pagamento</span>
+              </div>
+              <div className="stat-card stat-total">
                 <span className="stat-number stat-number-small">{formattedTotal}</span>
-                <span className="stat-label">Total Recebido</span>
+                <span className="stat-label">Total Confirmado</span>
               </div>
             </div>
 
+            {/* Barra de pesquisa compartilhada */}
             <div className="admin-toolbar">
               <div className="admin-search">
                 <svg className="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -261,43 +292,95 @@ export default function Admin() {
 
             {loading ? (
               <p className="admin-loading">Carregando...</p>
-            ) : presentes.length === 0 ? (
-              <p className="admin-empty">Nenhum presente registrado ainda.</p>
-            ) : filteredPresentes.length === 0 ? (
-              <p className="admin-empty">Nenhum resultado encontrado para &ldquo;{search}&rdquo;</p>
             ) : (
               <>
-                <p className="admin-results-count">
-                  {filteredPresentes.length} {filteredPresentes.length === 1 ? 'resultado' : 'resultados'}
-                </p>
-                <div className="admin-table-wrapper">
-                  <table className="admin-table">
-                    <thead>
-                      <tr>
-                        <th>Nome</th>
-                        <th>Valor</th>
-                        <th>Data</th>
-                        <th>Ações</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredPresentes.map((p) => (
-                        <tr key={p.id}>
-                          <td data-label="Nome" className="admin-guest-name">{p.nome || '—'}</td>
-                          <td data-label="Valor" className="admin-valor">
-                            {(p.valor || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                          </td>
-                          <td data-label="Data">{formatDate(p.timestamp)}</td>
-                          <td className="admin-actions">
-                            <button onClick={() => removePresente(p.id)} className="btn-remove">Remover</button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                {/* ── Dashboard 1: Aguardando Pagamento ───────────────── */}
+                <div className="admin-section">
+                  <h3 className="admin-section-title admin-section-title-pending">Aguardando Confirmação</h3>
+                  {presentesAguardando.length === 0 ? (
+                    <p className="admin-empty admin-empty-small">Nenhum PIX aguardando confirmação.</p>
+                  ) : filteredAguardando.length === 0 ? (
+                    <p className="admin-empty admin-empty-small">Nenhum resultado encontrado.</p>
+                  ) : (
+                    <>
+                      <p className="admin-results-count">{filteredAguardando.length} {filteredAguardando.length === 1 ? 'resultado' : 'resultados'}</p>
+                      <div className="admin-table-wrapper">
+                        <table className="admin-table">
+                          <thead>
+                            <tr>
+                              <th>Nome</th>
+                              <th>Valor</th>
+                              <th>Data</th>
+                              <th>Ações</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {filteredAguardando.map((p) => (
+                              <tr key={p.id}>
+                                <td data-label="Nome" className="admin-guest-name">{p.nome || '—'}</td>
+                                <td data-label="Valor" className="admin-valor">
+                                  {(p.valor || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                                </td>
+                                <td data-label="Data">{formatDate(p.timestamp)}</td>
+                                <td className="admin-actions">
+                                  <button onClick={() => togglePagamento(p)} className="btn-confirm-pay">
+                                    Confirmar Pgt.
+                                  </button>
+                                  <button onClick={() => removePresente(p.id)} className="btn-remove">Remover</button>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </>
+                  )}
                 </div>
-                <div className="admin-table-footer admin-table-footer-total">
-                  <span>Total recebido: <strong>{formattedTotal}</strong></span>
+
+                {/* ── Dashboard 2: Pagamentos Confirmados ─────────────── */}
+                <div className="admin-section">
+                  <h3 className="admin-section-title admin-section-title-confirmed">Pagamentos Confirmados</h3>
+                  {presentesPagos.length === 0 ? (
+                    <p className="admin-empty admin-empty-small">Nenhum pagamento confirmado ainda.</p>
+                  ) : filteredPagos.length === 0 ? (
+                    <p className="admin-empty admin-empty-small">Nenhum resultado encontrado.</p>
+                  ) : (
+                    <>
+                      <p className="admin-results-count">{filteredPagos.length} {filteredPagos.length === 1 ? 'resultado' : 'resultados'}</p>
+                      <div className="admin-table-wrapper">
+                        <table className="admin-table">
+                          <thead>
+                            <tr>
+                              <th>Nome</th>
+                              <th>Valor</th>
+                              <th>Data</th>
+                              <th>Ações</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {filteredPagos.map((p) => (
+                              <tr key={p.id}>
+                                <td data-label="Nome" className="admin-guest-name">{p.nome || '—'}</td>
+                                <td data-label="Valor" className="admin-valor">
+                                  {(p.valor || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                                </td>
+                                <td data-label="Data">{formatDate(p.timestamp)}</td>
+                                <td className="admin-actions">
+                                  <button onClick={() => togglePagamento(p)} className="btn-toggle">
+                                    Desconfirmar
+                                  </button>
+                                  <button onClick={() => removePresente(p.id)} className="btn-remove">Remover</button>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                      <div className="admin-table-footer admin-table-footer-total">
+                        <span>{presentesPagos.length} pago{presentesPagos.length !== 1 ? 's' : ''} — Total confirmado: <strong>{formattedTotal}</strong></span>
+                      </div>
+                    </>
+                  )}
                 </div>
               </>
             )}

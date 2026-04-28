@@ -69,6 +69,7 @@ export default function Presente() {
       addDoc(collection(db, 'presentes'), {
         nome: name.trim(),
         valor: numAmount,
+        pago: false,
         timestamp: serverTimestamp(),
       }).catch((err) => console.error('Firestore save failed:', err))
     } catch (err) {
