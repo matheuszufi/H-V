@@ -4,7 +4,7 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase'
 import './Presente.css'
 
-const PRESET_VALUES = [80, 100, 150, 200, 300, 500, 800, 1000]
+const PRESET_VALUES = [80, 100, 150, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 const MIN_AMOUNT = 50
 const PIX_KEY = 'heldermateusm23@gmail.com'
 const MERCHANT_NAME = 'H E V CASAMENTO'
@@ -104,10 +104,15 @@ export default function Presente() {
         {/* ── STEP 1: Nome, valor e método ──────────────────────────────── */}
         {step === 1 && (
           <>
-            <h1 className="presente-heading">Presentear os Noivos</h1>
-            <p className="presente-info">
-              Escolha um valor e receba o código PIX para pagamento.
-            </p>
+            <div className="presente-heading-row">
+              <img src="/images/pix.png" alt="PIX" className="presente-pix-logo" />
+              <div>
+                <h1 className="presente-heading">Presentear os Noivos</h1>
+                <p className="presente-info">
+                  Escolha um valor e receba o código PIX para pagamento.
+                </p>
+              </div>
+            </div>
 
             {error && <p className="presente-error">{error}</p>}
 
