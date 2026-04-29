@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase'
 import './Presente.css'
@@ -43,18 +43,29 @@ function generatePixPayload(amount) {
 }
 
 export default function Presente() {
+  const [searchParams] = useSearchParams()
   const [step, setStep] = useState(1)
   const [name, setName] = useState('')
   const [amount, setAmount] = useState('')
+  const [paymentMethod, setPaymentMethod] = useState('pix')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [copied, setCopied] = useState(false)
   const [pixCode, setPixCode] = useState('')
+  const [mpStatus, setMpStatus] = useState(null)
 
   const numAmount = parseFloat(amount) || 0
   const formattedAmount = numAmount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 
-  // ── Step 1: submit PIX ────────────────────────────────────────────────────
+  useEffect(() => {
+    const status = searchParams.get('status')
+    if (status === 'sucesso' || status === 'pendente' || status === 'erro') {
+      setMpStatus(status)
+      setStep(3)
+    }
+  }, [])
+
+  // ── Step 1: submit ─────────────────────────────────────────────────────
   async function handleSubmit(e) {
     e.preventDefault()
     setError('')
@@ -62,6 +73,33 @@ export default function Presente() {
     if (!numAmount || numAmount < MIN_AMOUNT) return setError(`Valor mínimo é R$ ${MIN_AMOUNT},00.`)
 
     setLoading(true)
+
+    if (paymentMethod === 'card') {
+      try {
+        const res = await fetch('/api/create-preference', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount: numAmount, name: name.trim() }),
+        })
+        const data = await res.json()
+        if (!res.ok) throw new Error(data.error || 'Erro ao criar preferência')
+        addDoc(collection(db, 'presentes'), {
+          nome: name.trim(),
+          valor: numAmount,
+          metodo: 'cartao',
+          pago: false,
+          timestamp: serverTimestamp(),
+        }).catch((err) => console.error('Firestore save failed:', err))
+        window.location.href = data.init_point
+      } catch (err) {
+        console.error('MP preference error:', err)
+        setError('Erro ao conectar com Mercado Pago. Tente novamente.')
+        setLoading(false)
+      }
+      return
+    }
+
+    // PIX
     try {
       const code = generatePixPayload(numAmount)
       setPixCode(code)
@@ -69,6 +107,7 @@ export default function Presente() {
       addDoc(collection(db, 'presentes'), {
         nome: name.trim(),
         valor: numAmount,
+        metodo: 'pix',
         pago: false,
         timestamp: serverTimestamp(),
       }).catch((err) => console.error('Firestore save failed:', err))
@@ -88,7 +127,7 @@ export default function Presente() {
   }
 
   function reset() {
-    setStep(1); setError(''); setCopied(false); setPixCode('')
+    setStep(1); setError(''); setCopied(false); setPixCode(''); setMpStatus(null)
   }
 
   const qrUrl = pixCode
@@ -156,8 +195,34 @@ export default function Presente() {
                 />
               </div>
 
+              <span className="presente-label">Forma de pagamento</span>
+              <div className="presente-payment-methods">
+                <button
+                  type="button"
+                  className={`presente-method-btn${paymentMethod === 'pix' ? ' active' : ''}`}
+                  onClick={() => setPaymentMethod('pix')}
+                >
+                  PIX
+                </button>
+                <button
+                  type="button"
+                  className={`presente-method-btn${paymentMethod === 'card' ? ' active' : ''}`}
+                  onClick={() => setPaymentMethod('card')}
+                >
+                  Cartão de crédito
+                </button>
+              </div>
+
+              {paymentMethod === 'card' && numAmount >= MIN_AMOUNT && (
+                <p className="presente-installments-preview">
+                  em até 12× no cartão de crédito via Mercado Pago
+                </p>
+              )}
+
               <button type="submit" className="presente-submit" disabled={loading}>
-                {loading ? 'Gerando PIX…' : 'Gerar PIX'}
+                {loading
+                  ? (paymentMethod === 'card' ? 'Redirecionando…' : 'Gerando PIX…')
+                  : (paymentMethod === 'card' ? 'Pagar com Cartão' : 'Gerar PIX')}
               </button>
             </form>
 
@@ -192,6 +257,39 @@ export default function Presente() {
             </button>
 
             <button className="presente-back-btn" onClick={reset}>← Alterar valor</button>
+          </>
+        )}
+
+        {/* ── STEP 3: Retorno do Mercado Pago ──────────────────────────── */}
+        {step === 3 && (
+          <>
+            {mpStatus === 'sucesso' && (
+              <>
+                <div className="presente-success-icon">✓</div>
+                <h1 className="presente-heading">Presente enviado!</h1>
+                <p className="presente-info">
+                  Seu pagamento foi aprovado. Muito obrigado pelo carinho! 🤍
+                </p>
+              </>
+            )}
+            {mpStatus === 'pendente' && (
+              <>
+                <div className="presente-success-icon">⏳</div>
+                <h1 className="presente-heading">Pagamento pendente</h1>
+                <p className="presente-info">
+                  Aguardando a confirmação do pagamento. Você receberá uma notificação em breve.
+                </p>
+              </>
+            )}
+            {mpStatus === 'erro' && (
+              <>
+                <p className="presente-error">Pagamento não aprovado. Tente novamente.</p>
+                <button className="presente-submit" onClick={reset}>
+                  Tentar novamente
+                </button>
+              </>
+            )}
+            <Link to="/" className="presente-home-link">← Voltar ao início</Link>
           </>
         )}
       </div>

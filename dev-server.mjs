@@ -70,6 +70,8 @@ const server = http.createServer(async (req, nodeRes) => {
       handlerModule = await import('./api/public-key.js?' + Date.now())
     } else if (url === '/api/create-order') {
       handlerModule = await import('./api/create-order.js?' + Date.now())
+    } else if (url === '/api/create-preference') {
+      handlerModule = await import('./api/create-preference.js?' + Date.now())
     } else {
       nodeRes.statusCode = 404
       nodeRes.end(JSON.stringify({ error: 'Rota não encontrada' }))
@@ -105,4 +107,5 @@ server.listen(PORT, () => {
   console.log('[dev-server] Endpoints disponíveis:')
   console.log(`  GET  http://localhost:${PORT}/api/public-key`)
   console.log(`  POST http://localhost:${PORT}/api/create-order`)
+  console.log(`  POST http://localhost:${PORT}/api/create-preference`)
 })
