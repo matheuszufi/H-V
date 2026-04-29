@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase'
+import { useRef } from 'react'
 import './Presente.css'
 
 const PRESET_VALUES = [80, 100, 150, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
@@ -53,15 +54,39 @@ export default function Presente() {
   const [copied, setCopied] = useState(false)
   const [pixCode, setPixCode] = useState('')
   const [mpStatus, setMpStatus] = useState(null)
+  const savedRef = useRef(false)
 
   const numAmount = parseFloat(amount) || 0
   const formattedAmount = numAmount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 
   useEffect(() => {
     const status = searchParams.get('status')
+    const paymentId = searchParams.get('payment_id') || searchParams.get('collection_id')
+
     if (status === 'sucesso' || status === 'pendente' || status === 'erro') {
       setMpStatus(status)
       setStep(3)
+
+      if (status === 'sucesso' && paymentId && !savedRef.current) {
+        savedRef.current = true
+        fetch(`/api/payment-info?payment_id=${encodeURIComponent(paymentId)}`)
+          .then((r) => r.json())
+          .then((data) => {
+            if (!data.error) {
+              addDoc(collection(db, 'presentes'), {
+                nome: data.external_reference || 'Cartão',
+                valor: data.total_amount,
+                metodo: 'cartao',
+                parcelas: data.installments,
+                valorParcela: data.installment_amount,
+                payment_id: paymentId,
+                pago: true,
+                timestamp: serverTimestamp(),
+              }).catch((err) => console.error('Firestore save failed:', err))
+            }
+          })
+          .catch((err) => console.error('Payment info error:', err))
+      }
     }
   }, [])
 
@@ -83,13 +108,6 @@ export default function Presente() {
         })
         const data = await res.json()
         if (!res.ok) throw new Error(data.error || 'Erro ao criar preferência')
-        addDoc(collection(db, 'presentes'), {
-          nome: name.trim(),
-          valor: numAmount,
-          metodo: 'cartao',
-          pago: false,
-          timestamp: serverTimestamp(),
-        }).catch((err) => console.error('Firestore save failed:', err))
         window.location.href = data.init_point
       } catch (err) {
         console.error('MP preference error:', err)

@@ -254,7 +254,7 @@ export default function Admin() {
             <div className="admin-stats">
               <div className="stat-card">
                 <span className="stat-number">{presentes.length}</span>
-                <span className="stat-label">Total PIX Gerados</span>
+                <span className="stat-label">Total Registros</span>
               </div>
               <div className="stat-card stat-confirmed">
                 <span className="stat-number">{presentesPagos.length}</span>
@@ -310,6 +310,7 @@ export default function Admin() {
                             <tr>
                               <th>Nome</th>
                               <th>Valor</th>
+                              <th>Método</th>
                               <th>Data</th>
                               <th>Ações</th>
                             </tr>
@@ -320,6 +321,17 @@ export default function Admin() {
                                 <td data-label="Nome" className="admin-guest-name">{p.nome || '—'}</td>
                                 <td data-label="Valor" className="admin-valor">
                                   {(p.valor || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                                </td>
+                                <td data-label="Método">
+                                  {p.metodo === 'cartao'
+                                    ? <span className="badge badge-card">
+                                        Cartão {p.parcelas && p.parcelas > 1
+                                          ? `${p.parcelas}x de ${(p.valorParcela || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`
+                                          : '1x'
+                                        }
+                                      </span>
+                                    : <span className="badge badge-pix">PIX</span>
+                                  }
                                 </td>
                                 <td data-label="Data">{formatDate(p.timestamp)}</td>
                                 <td className="admin-actions">
@@ -353,6 +365,7 @@ export default function Admin() {
                             <tr>
                               <th>Nome</th>
                               <th>Valor</th>
+                              <th>Método</th>
                               <th>Data</th>
                               <th>Ações</th>
                             </tr>
@@ -363,6 +376,17 @@ export default function Admin() {
                                 <td data-label="Nome" className="admin-guest-name">{p.nome || '—'}</td>
                                 <td data-label="Valor" className="admin-valor">
                                   {(p.valor || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                                </td>
+                                <td data-label="Método">
+                                  {p.metodo === 'cartao'
+                                    ? <span className="badge badge-card">
+                                        Cartão {p.parcelas && p.parcelas > 1
+                                          ? `${p.parcelas}x de ${(p.valorParcela || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`
+                                          : '1x'
+                                        }
+                                      </span>
+                                    : <span className="badge badge-pix">PIX</span>
+                                  }
                                 </td>
                                 <td data-label="Data">{formatDate(p.timestamp)}</td>
                                 <td className="admin-actions">

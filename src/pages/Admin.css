@@ -386,6 +386,16 @@
   color: #e67e22;
 }
 
+.badge-pix {
+  background: rgba(0, 159, 127, 0.12);
+  color: #007a62;
+}
+
+.badge-card {
+  background: rgba(52, 73, 219, 0.1);
+  color: #3449db;
+}
+
 /* ── Actions ─────────────────────────────────────────────────────────────── */
 .admin-actions {
   display: flex;
